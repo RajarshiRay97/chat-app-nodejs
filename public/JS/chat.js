@@ -8,12 +8,14 @@ const sendMessageButton = messageForm.querySelector('button');
 const shareLocationBtn = document.getElementById('shareLocationBtn');
 const messagesContainer = document.getElementById('messages-container');
 const sidebar = document.getElementById('sidebar');
+const collapsableSidebar = document.getElementById('collapsable-sidebar');
 
 // Templates
 const messageTemplate = document.getElementById('message-template').innerHTML;
 const welcomeLeaveMessageTemplate = document.getElementById('welcome-leave-message-template').innerHTML;
 const locationMessageTemplate = document.getElementById('location-message-template').innerHTML;
 const roomUsersTemplate = document.getElementById('room-users-template').innerHTML;
+const collapsableRoomUsersTemplate = document.getElementById('collapsable-room-users-template').innerHTML;
 
 // Options
 const {username, room} = Qs.parse(location.search, {ignoreQueryPrefix: true});
@@ -78,11 +80,17 @@ socket.on('locationMessage', (location)=>{
 });
 
 socket.on('roomData', ({room, users})=>{
+    const collapsableHtml = Mustache.render(collapsableRoomUsersTemplate, {
+        room,
+        users
+    });
+
     const html = Mustache.render(roomUsersTemplate, {
         room,
         users
     });
 
+    collapsableSidebar.innerHTML = collapsableHtml;
     sidebar.innerHTML = html;
 });
 

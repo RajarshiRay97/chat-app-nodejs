@@ -89,6 +89,41 @@ button:disabled {
     display: flex;
 }
 
+.chat__sidmenu{
+    height: 100vh;
+    color: white;
+    background: #333744;
+    padding: 6px;
+    display: none;
+}
+
+#collapsable-sidebar{
+    width: 275px;
+}
+
+.btn-close-custom{
+    filter: invert(1);
+    margin-left: 2rem !important;
+    margin-right: 0.2rem !important;
+    box-sizing: border-box !important;
+    width: 10px !important;
+}
+
+#chat-room-btn{
+    padding: 8px;
+    border-radius: 50%;
+}
+
+#chat-room-btn:hover{
+    background-color: gray;
+}
+
+#chat-room-btn img{
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+}
+
 .chat__sidebar {
     height: 100vh;
     color: white;
@@ -110,6 +145,28 @@ button:disabled {
     flex-grow: 1;
     padding: 24px 24px 0 24px;
     overflow-y: scroll;
+}
+
+#send{
+    padding: 10px;
+    border-radius: 6px;
+}
+
+#send img{
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
+
+#shareLocationBtn{
+    padding: 7px 5px;
+    border-radius: 6px;
+}
+
+#shareLocationBtn img {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
 }
 
 /* Message Styles */
@@ -149,7 +206,8 @@ button:disabled {
 }
 
 .compose input {
-    border: 1px solid #eeeeee;
+    border: 1px solid #a48bd8;
+    border-radius: 5px;
     width: 100%;
     padding: 12px;
     margin: 0 16px 0 0;
@@ -165,8 +223,9 @@ button:disabled {
 .room-title {
     font-weight: 400;
     font-size: 22px;
-    background: #2c2f3a;
-    padding: 24px;   
+    background: hsl(227, 14%, 20%);
+    padding: 24px;
+    justify-content: space-between;
 }
 
 .list-title {
@@ -180,4 +239,190 @@ button:disabled {
     list-style-type: none;
     font-weight: 300;
     padding: 12px 24px 0 24px;
+}
+
+.location-span{
+    display: none;
+}
+
+
+/* Responsive Design */
+@media screen and (min-width: 600px) and  (max-width: 800px) {
+    .chat__sidebar {
+        width: 250px;
+    }
+
+    #send img{
+        width: 25px;
+        height: 25px;
+    }
+    
+    #shareLocationBtn img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 600px) {
+    .centered-form__box{
+        width: 250px;
+    }
+
+    .centered-form__box h1{
+        font-size: 1.5em;
+    }
+
+    .compose form{
+        margin-right: 8px;
+    }
+
+    .compose input{
+        margin-right: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .chat__sidmenu{
+        display: block;
+    }
+
+    #sidebar{
+        display: none;
+    }
+
+    #send{
+        padding: 0 10px;
+    }
+
+    #send img{
+        width: 20px;
+        height: 20px;
+    }
+    
+    #shareLocationBtn img {
+        width: 28px;
+        height: 25px;
+    }
+
+    .fnt-sz-room{
+        font-size: 22px;
+    }
+
+    .fnt-sz-created-at{
+        font-size: 12px;
+    }
+
+    .fnt-sz-msg{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .centered-form__box{
+        width: 180px;
+        padding: 14px;
+    }
+
+    .centered-form__box form label{
+        font-size: 12px;
+    }
+
+    .centered-form__box form input, .centered-form__box form button{
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .centered-form__box h1{
+        font-size: 1.2em;
+    }
+
+    .chat__messages {
+        padding: 14px 14px 0 14px;
+    }
+
+    .compose{
+        padding: 14px;
+        margin-top: 12px;
+        flex-direction: column;
+    }
+
+    .compose form{
+        margin-right: 0;
+    }
+
+    .compose input{
+        margin-right: 10px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .chat__sidmenu{
+        display: block;
+    }
+
+    #chat-room-btn {
+        padding: 5px;
+    }
+
+    #chat-room-btn img {
+        width: 18px;
+        height: 18px;
+    }
+
+    #collapsable-sidebar {
+        width: 160px;
+    }
+
+    #sidebar{
+        display: none;
+    }
+
+    #send{
+        padding: 0 8px;
+    }
+
+    #send img{
+        width: 16px;
+        height: 21px;
+    }
+
+    #shareLocationBtn{
+        margin-top: 8px;
+    }
+    
+    #shareLocationBtn img {
+        width: 25px;
+        height: 20px;
+    }
+
+    .location-span{
+        display: inline;
+        margin-left: 3px;
+        font-size: 12px;
+    }
+
+    .fnt-sz-room{
+        font-size: 16px;
+    }
+
+    .list-title{
+        font-size: 14px;
+    }
+
+    .users{
+        font-size: 12px;
+        padding: 8px 24px 0 24px;
+    }
+
+    .fnt-sz-created-at{
+        font-size: 10px;
+    }
+
+    .fnt-sz-msg{
+        font-size: 12px;
+    }
+
+    .btn-close-custom {
+        margin: 0 !important;
+    }
 }
