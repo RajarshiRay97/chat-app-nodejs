@@ -57,17 +57,17 @@
     </script>
 
     <script id="welcome-leave-message-template" type="text/html">
-        <div class="message">
-            <p class="mb-1">
+        <div class="message welcome-message">
+            <p class="mb-3 welcome-message-time">
                 <span class="message__meta fnt-sz-created-at">{{createdAt}}</span>
             </p>
-            <p class="fnt-sz-msg">{{message}}</p>
+            <p class="mb-3 fnt-sz-msg welcome-message-txt">{{message}}</p>
         </div>
     </script>
 
-    <script id="message-template" type="text/html">
-        <div class="message">
-            <p class="mb-1">
+    <script id="left-message-template" type="text/html">
+        <div class="message left-message">
+            <p class="mb-1 name-meta-container">
                 <span class="message__name fnt-sz-created-at">{{username}}</span>
                 <span class="message__meta fnt-sz-created-at">{{createdAt}}</span>
             </p>
@@ -75,9 +75,31 @@
         </div>
     </script>
 
-    <script id="location-message-template" type="text/html">
-        <div class="message">
-            <p class="mb-1">
+    <script id="right-message-template" type="text/html">
+        <div class="message right-message">
+            <p class="mb-1 name-meta-container">
+                <span class="message__name fnt-sz-created-at">{{username}}</span>
+                <span class="message__meta fnt-sz-created-at">{{createdAt}}</span>
+            </p>
+            <p class="fnt-sz-msg">{{message}}</p>
+        </div>
+    </script>
+
+    <script id="left-location-message-template" type="text/html">
+        <div class="message left-message">
+            <p class="mb-1 name-meta-container">
+                <span class="message__name fnt-sz-created-at">{{username}}</span>
+                <span class="message__meta fnt-sz-created-at">{{createdAt}}</span>
+            </p>
+            <p class="fnt-sz-msg">
+                <a href="{{locationURL}}" target="_blank">Click to open the location in Google Map</a>
+            </p>
+        </div>
+    </script>
+
+    <script id="right-location-message-template" type="text/html">
+        <div class="message right-message">
+            <p class="mb-1 name-meta-container">
                 <span class="message__name fnt-sz-created-at">{{username}}</span>
                 <span class="message__meta fnt-sz-created-at">{{createdAt}}</span>
             </p>

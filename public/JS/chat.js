@@ -11,9 +11,11 @@ const sidebar = document.getElementById('sidebar');
 const collapsableSidebar = document.getElementById('collapsable-sidebar');
 
 // Templates
-const messageTemplate = document.getElementById('message-template').innerHTML;
+const leftMessageTemplate = document.getElementById('left-message-template').innerHTML;
+const rightMessageTemplate = document.getElementById('right-message-template').innerHTML;
 const welcomeLeaveMessageTemplate = document.getElementById('welcome-leave-message-template').innerHTML;
-const locationMessageTemplate = document.getElementById('location-message-template').innerHTML;
+const leftLocationMessageTemplate = document.getElementById('left-location-message-template').innerHTML;
+const rightLocationMessageTemplate = document.getElementById('right-location-message-template').innerHTML;
 const roomUsersTemplate = document.getElementById('room-users-template').innerHTML;
 const collapsableRoomUsersTemplate = document.getElementById('collapsable-room-users-template').innerHTML;
 
@@ -45,22 +47,32 @@ const autoscroll = ()=>{
 }
 
 socket.on('message', (message)=>{
+    const currentClientId = socket.id;
     console.log(message);
 
     let html;
 
     // to render dynamic message html in the targeted element
     if (message.username){
-        html = Mustache.render(messageTemplate, {
-            message: message.text,
-            username: message.username,
-            createdAt: moment(message.createdAt).format('h:mm a')
-        });
+        if (currentClientId === message.clientId){
+            html = Mustache.render(rightMessageTemplate, {
+                message: message.text,
+                username: message.username,
+                createdAt: moment(message.createdAt).format('h:mm a')
+            });
+        }
+        else{
+            html = Mustache.render(leftMessageTemplate, {
+                message: message.text,
+                username: message.username,
+                createdAt: moment(message.createdAt).format('h:mm a')
+            });
+        }
     }
     else{
         html = Mustache.render(welcomeLeaveMessageTemplate, {
             message: message.text,
-            createdAt: moment(message.createdAt).format('h:mm a')
+            createdAt: moment(message.createdAt).format('MMMM D, YYYY - h:mm a')
         });
     }
     messagesContainer.insertAdjacentHTML('beforeend', html);
@@ -68,13 +80,25 @@ socket.on('message', (message)=>{
 });
 
 socket.on('locationMessage', (location)=>{
+    const currentClientId = socket.id;
     console.log(location);
 
-    const html = Mustache.render(locationMessageTemplate, {
-        locationURL: location.locationURL,
-        username: location.username,
-        createdAt: moment(location.createdAt).format('h:mm a')
-    });
+    let html;
+
+    if (currentClientId === location.clientId){
+        html = Mustache.render(rightLocationMessageTemplate, {
+            locationURL: location.locationURL,
+            username: location.username,
+            createdAt: moment(location.createdAt).format('h:mm a')
+        });
+    }
+    else{
+        html = Mustache.render(leftLocationMessageTemplate, {
+            locationURL: location.locationURL,
+            username: location.username,
+            createdAt: moment(location.createdAt).format('h:mm a')
+        });
+    }
     messagesContainer.insertAdjacentHTML('beforeend', html);
     autoscroll();
 });

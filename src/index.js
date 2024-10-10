@@ -48,14 +48,14 @@ io.on('connection', (socket)=>{
         const filter = new Filter();
         if (filter.isProfane(messageValue)) return callback('Foul language not acceptable!');
 
-        io.to(user.room).emit('message', generateMessage(messageValue, user.username));
+        io.to(user.room).emit('message', generateMessage(messageValue, user.username, socket.id));
         callback();
     })
 
     socket.on('sendLocation', (locationObj, callback)=>{
         const user = getUser(socket.id);
 
-        io.to(user.room).emit('locationMessage',generateLocationMessage(`https://google.com/maps?q=${locationObj.latitude},${locationObj.longitude}`, user.username));
+        io.to(user.room).emit('locationMessage',generateLocationMessage(`https://google.com/maps?q=${locationObj.latitude},${locationObj.longitude}`, user.username, socket.id));
         callback();
     });
 

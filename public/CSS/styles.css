@@ -172,7 +172,63 @@ button:disabled {
 /* Message Styles */
 
 .message {
-    margin-bottom: 16px;   
+    margin-bottom: 16px;
+}
+
+.welcome-message{
+    display: flex;
+    clear: both;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-message{
+    background-color: #dce3ffd1;
+    max-width: 80%;
+    float: left;
+    clear: both;
+    padding: 6px 12px 6px 22px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%, 10px 10px);
+    border-radius: 8px;
+    border-top-left-radius: 0;
+}
+
+.right-message{
+    background-color: #dcffe7;
+    max-width: 80%;
+    float: right;
+    clear: both;
+    padding: 6px 22px 6px 12px;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 10px) 10px, calc(100% - 10px) 100%, 0% 100%);
+    border-radius: 8px;
+    border-top-right-radius: 0;
+}
+
+.welcome-message-time{
+    font-weight: 600;
+    background-color: #ebdcffab;
+    padding: 6px 14px;
+    border-radius: 7px;
+    box-shadow: #d7bdf7ab 0px 2px 2px;
+    text-align: center;
+    line-height: 0.8rem;
+
+}
+
+.welcome-message-txt{
+    color: #6a6a6a;
+    font-weight: 500;
+    background-color: #ebdcff52;
+    padding: 3px 14px;
+    border-radius: 7px;
+    box-shadow: #d4c4e7ab 0px 2px 3px;
+    text-align: center;
+}
+
+.name-meta-container{
+    display: flex;
+    justify-content: space-between;
 }
 
 .message__name {
@@ -188,6 +244,10 @@ button:disabled {
 
 .message a {
     color: #0070CC;
+}
+
+.fnt-sz-msg{
+    margin-bottom: 0;
 }
 
 /* Message Composition Styles */
