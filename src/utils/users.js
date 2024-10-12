@@ -1,3 +1,5 @@
+const { updateRoomListOnUserAdd, updateRoomListOnUserRemove} = require('./room');
+
 const users = [];
 
 // addUser
@@ -16,6 +18,7 @@ const addUser = ({id, username, room})=>{
     // Store User
     const user = {id, username, room};
     users.push(user);
+    updateRoomListOnUserAdd(room);
     return {user};
 }
 
@@ -24,6 +27,8 @@ const removeUser = (id)=>{
     const index = users.findIndex(user=>user.id === id);
 
     if (index !== -1){
+        const room = users[index].room;
+        updateRoomListOnUserRemove(room);
         return users.splice(index, 1)[0];
     }
 }

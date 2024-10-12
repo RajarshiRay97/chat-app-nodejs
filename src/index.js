@@ -5,6 +5,7 @@ const path = require('path');
 const http = require('http');
 const { generateMessage, generateLocationMessage} = require('./utils/messages');
 const { addUser, removeUser, getUser, getUsersInRoom} = require('./utils/users');
+const { getRooms} = require('./utils/room');
 
 const app = express();
 const server = http.createServer(app);
@@ -19,12 +20,15 @@ app.use(express.static(publicDir));
 io.on('connection', (socket)=>{
     console.log('Web socket connection set for new client');
 
+    io.emit('roomList', getRooms());
+
     socket.on('room', (userDetails, acknowledgeCallback)=>{
         const {user, error} = addUser({id: socket.id, ...userDetails});
 
         if (error) return acknowledgeCallback(error);
 
         socket.join(user.room);
+        io.emit('roomList', getRooms());
 
         socket.emit('message', generateMessage(`Welcome in the Room ${user.username}!`))
 
@@ -61,6 +65,7 @@ io.on('connection', (socket)=>{
 
     // When the current connected client is disconnected from the server send the notification to al other connected clients
     socket.on('disconnect', ()=>{
+        io.emit('roomList', getRooms());
         const removedUser = removeUser(socket.id);
         if (removedUser){
             io.to(removedUser.room).emit('message', generateMessage(`${removedUser.username} has left the room!`));
@@ -70,6 +75,7 @@ io.on('connection', (socket)=>{
                 room: removedUser.room,
                 users: getUsersInRoom(removedUser.room)
             });
+            io.emit('roomList', getRooms());
         }
     });
 });
